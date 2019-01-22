@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+
+.dashboard {
+  /* border: 1px solid green; */
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.dashboard-img {
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.progress-bar {
+  position: relative;
+  height: 50px;
+  width: 75%;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+.filler {
+  background: #f4c8ff;
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.2s ease-in;
+}
+
+.filler:hover {
+  background: #2980b9;
+}
+
+.birthdayInput {
+  margin: 50px;
+  /* border: 1px solid #3498db; */
+  /* border-radius: 20px; */
+  padding: 40px;
+}
+
+.banner {
+  font-size: 60px;
+}
+
+.banner2 {
+  font-size: 40px;
+}
+
+.formInput {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.formInput div {
+  margin: 0 3px;
+}
+
+.footer {
+  /* border: 1px solid blue; */
+  margin: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #2979ff;
+}
+a:visited {
+  color: #2196f3;
+}
+
+/* button {
+  margin-right: 10px;
+  padding: 7px 12px;
+  font-size: 14px;
+  background: #d14836;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+  outline: 0;
+} */
+
+/* .progressBarFill {
+  background: blue;
+  height: 100px;
+  width: 50%;
+  border-radius: 30px;
+} */
+
+.progress-box {
+  position: relative;
+  height: 50px;
+  width: 75%;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
