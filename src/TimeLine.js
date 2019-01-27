@@ -17,7 +17,21 @@ export default class TimeLine extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log("source", this.state.source);
+    console.log("prevProps", prevProps);
+    console.log("prevState", prevState);
+    console.log("snapshot", snapshot);
+
+    // Typical usage (don't forget to compare props):
+    if (this.props.source !== prevProps.source) {
+      console.log("source changed", this.state.source);
+
+      this.setState({
+        source: this.props.source
+      });
+    }
+  }
 
   render() {
     let timelineUrl = url;

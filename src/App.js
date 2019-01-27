@@ -7,8 +7,10 @@ import BirthdateInput from "./BirthdateInput";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import TimeLine from "./TimeLine";
+import TimeLineInput from "./TimeLineInput";
+import { Button, Icon } from "@blueprintjs/core";
+import { Row, Col } from "antd";
 
-let source = "1N1gcaOfd0AUy3iyYPlZZHDyk9n8BXtXRuUMEAR2oSk4";
 let height = "450";
 let zoom = 2;
 
@@ -20,6 +22,11 @@ const theme = createMuiTheme({
     }
   }
 });
+
+const style = {
+  width: 500
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -36,27 +43,61 @@ class App extends Component {
       birthDate
     });
   }
-  storeBirthday(birthdayString) {
-    const birthDate = birthdayString;
-    //chrome.storage.local.set({ key: birthDate }, function() {});
+
+  storeBirthday(value) {
+    if (chrome.storage) {
+      chrome.storage.local.set({ birthdayString: value }, function() {});
+    }
+  }
+
+  storeTimeLineSource(value) {
+    if (chrome.storage) {
+      chrome.storage.local.set({ timeLineSource: value }, function() {});
+    }
+  }
+
+  setTimeLineSource(timeLineSource) {
+    //  console.log("timeLineSource", timeLineSource);
+    //  console.log("this", this);
+    this.storeTimeLineSource(timeLineSource);
+
+    this.setState({
+      timeLineSource
+    });
+  }
+
+  clearBirthDate() {
+    this.storeBirthday("");
+    this.setState({
+      birthDate: ""
+    });
+  }
+  clearTimelineSource() {
+    this.storeTimeLineSource("");
+    this.setState({
+      timeLineSource: ""
+    });
   }
   componentDidMount() {
     // Try to load the birthdate from storage
-    /*
-    chrome.storage.local.get(
-      ["key"],
-      function(result) {
-        if (result.key) {
-          this.setState({
-            birthDate: new Date(result.key)
-          });
-        }
-      }.bind(this)
-    );
-    */
-    this.setState({
-      birthDate: new Date("1973/7/13")
-    });
+    if (chrome.storage) {
+      chrome.storage.local.get(
+        ["birthdayString", "timeLineSource"],
+        function(result) {
+          //console.log(result);
+          if (result.birthdayString) {
+            this.setState({
+              birthDate: new Date(result.birthdayString)
+            });
+          }
+          if (result.timeLineSource) {
+            this.setState({
+              timeLineSource: new Date(result.timeLineSource)
+            });
+          }
+        }.bind(this)
+      );
+    }
   }
 
   render() {
@@ -69,7 +110,39 @@ class App extends Component {
           {!this.state.birthDate && (
             <BirthdateInput onSubmit={this.setBirthday} />
           )}
-          <TimeLine source={source} height={height} zoom={zoom} />
+          {this.state.timeLineSource && (
+            <TimeLine
+              source={this.state.timeLineSource}
+              height={height}
+              zoom={zoom}
+            />
+          )}
+          {!this.state.timeLineSource && (
+            <TimeLineInput onSubmit={e => this.setTimeLineSource(e)} />
+          )}
+
+          <Row style={style}>
+            <Col span={12}>
+              {" "}
+              <Button
+                rightIcon="clean"
+                intent="warning"
+                text="clear BirthDate"
+                minimal="true"
+                onClick={() => this.clearBirthDate()}
+              />
+            </Col>
+            <Col span={12}>
+              {" "}
+              <Button
+                rightIcon="clean"
+                intent="warning"
+                text="clear Timeline"
+                minimal="true"
+                onClick={() => this.clearTimelineSource()}
+              />
+            </Col>
+          </Row>
           <Footer />
         </MuiThemeProvider>
       </div>

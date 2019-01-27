@@ -1,5 +1,6 @@
 import React from "react";
 import ProgressBox from "./ProgressBox";
+import ProgressBar from "./ProgressBar";
 import Utils from "./utils";
 import commaNumber from "comma-number";
 import PropTypes from "prop-types";
@@ -48,7 +49,7 @@ const DaysLeftView = function(props) {
         </p>
 
         <div className="container">
-          <ProgressBox percent={gage} />
+          <ProgressBar percent={gage} />
         </div>
       </div>
 

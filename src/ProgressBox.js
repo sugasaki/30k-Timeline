@@ -13,9 +13,9 @@ export default function ProgressBox(props) {
       maxlength="2048"
       name="q"
       type="text"
-      title="検索"
+      title="search"
       value=""
-      aria-label="検索"
+      aria-label="search"
     />
   );
 }

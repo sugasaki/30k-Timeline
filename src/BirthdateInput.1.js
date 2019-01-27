@@ -40,7 +40,7 @@ export default class BirthdateInput extends React.Component {
   }
 
   handleChange(date) {
-    let birthDate = moment(date).format("YYYY-MM-DD");
+    let birthDate = moment(date);
     console.log("date", birthDate);
 
     this.setState({ birthday: birthDate });
@@ -51,27 +51,41 @@ export default class BirthdateInput extends React.Component {
       <div className="birthdayInput">
         <h1>When were you born?</h1>
 
-        <DatePicker
-          onChange={newDate => this.handleChange(newDate)}
-          minDate={new Date("1900/1/1")}
-          defaultValue={new Date("1980/1/1")}
-        />
+        <DatePicker onChange={newDate => this.handleChange(newDate)} />
 
-        <h1>{this.state.birthday}</h1>
+        <h1>{this.state.selectedDate}</h1>
 
-        <div>
-          {this.isValidDate(this.state.birthday) && (
-            <Button
-              onClick={this.handleSubmit}
-              variant="contained"
-              size="large"
-              type="submit"
-              color="primary"
-            >
-              Done
-            </Button>
-          )}
-        </div>
+        <form onSubmit={this.handleSubmit}>
+          <FormControl variant="outlined">
+            <div className="formInput">
+              <div>
+                <TextField
+                  id="date"
+                  variant="outlined"
+                  label="Birth Date"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  onChange={this.handleChange}
+                  value={this.state.birthday}
+                />
+              </div>
+              <div>
+                {this.isValidDate(this.state.birthday) && (
+                  <Button
+                    variant="contained"
+                    size="large"
+                    type="submit"
+                    color="primary"
+                  >
+                    Done
+                  </Button>
+                )}
+              </div>
+            </div>
+          </FormControl>
+        </form>
       </div>
     );
   }

@@ -1,21 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './styles/index.css';
-import Utils from './utils';
+import React from "react";
+import PropTypes from "prop-types";
+import "./styles/index.css";
 
-  
-const Filler = (props) => {
-    return <div className="filler" style={{ width: `${props.percentage}%` }}/>
-}
+const Filler = props => {
+  return <div className="filler" style={{ width: `${props.percentage}%` }} />;
+};
 
 export default function ProgressBar(props) {
-    return (
-        <div className="progress-bar">
-            <Filler percentage={Utils.computeLifeFraction(props.birthDateObject)}/>
-        </div>
-    )
+  //console.log("props", props);
+  return (
+    <div className="progress-bar">
+      <Filler percentage={props.percent} />
+    </div>
+  );
 }
 
 ProgressBar.propTypes = {
-    birthDateObject: PropTypes.object.isRequired
-}
+  birthDateObject: PropTypes.object.isRequired
+};
