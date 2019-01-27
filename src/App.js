@@ -92,7 +92,7 @@ class App extends Component {
           }
           if (result.timeLineSource) {
             this.setState({
-              timeLineSource: new Date(result.timeLineSource)
+              timeLineSource: result.timeLineSource
             });
           }
         }.bind(this)

@@ -2,7 +2,7 @@
   "name": "30k timeline",
   "short_name": "React App",
   "description": "An extension that shows how many days you have lived (out of 30,000 days).",
-  "version": "1.1",
+  "version": "1.2",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
